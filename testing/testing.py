@@ -8,6 +8,7 @@ import os
 import getpass
 load_dotenv()
 
+# ---- API Key ----
 if not os.environ.get("OPENAI_API_KEY"):
   os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
@@ -19,6 +20,7 @@ vector_store = Chroma(
     embedding_function=embeddings
 )
 
+# ---- Model ----
 model = ChatOpenAI(model="gpt-4.1-mini")
 
 @tool(response_format="content_and_artifact")
@@ -30,17 +32,18 @@ def retrieve_context(query: str):
         for doc in retrieved_docs
     )
     return serialized, retrieved_docs
-
+# ---- Tools ----
 tools = [retrieve_context]
 # If desired, specify custom instructions
 prompt = (
     "You are a helpful assistant that can answer questions about the Opzeze HR Policy."
     "Only answer the user based on the provided context. If the answer is not in the policy, say so ."
 )
+# ---- Agent ----
 agent = create_agent(model, tools, system_prompt=prompt)
 
 query = "leave policy"
-
+# ---- Query ----
 # result = agent.invoke({"messages": [{"role": "user", "content": query}]})
 # print(result)
 for step in agent.stream(
