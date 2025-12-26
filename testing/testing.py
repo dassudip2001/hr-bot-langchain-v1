@@ -36,19 +36,19 @@ def retrieve_context(query: str):
 tools = [retrieve_context]
 # If desired, specify custom instructions
 prompt = (
-    "You are a helpful assistant that can answer questions about the Opzeze HR Policy."
-    "Only answer the user based on the provided context. If the answer is not in the policy, say so ."
+    "You are a helpful assistant that can answer questions about the Opzeze HR Policy. "
+    "Only answer the user based on the provided context. If the answer is not in the policy, say so."
 )
 # ---- Agent ----
 agent = create_agent(model, tools, system_prompt=prompt)
 
 query = "leave policy"
 # ---- Query ----
-# result = agent.invoke({"messages": [{"role": "user", "content": query}]})
-# print(result)
-for step in agent.stream(
-    {"messages": [{"role": "user", "content": query}]},
-    stream_mode="values",
-):
-    step["messages"][-1].pretty_print()
+result = agent.invoke({"messages": [{"role": "user", "content": query}]})
+print(result["messages"][-1]["content"])
+# for step in agent.stream(
+#     {"messages": [{"role": "user", "content": query}]},
+#     stream_mode="values",
+# ):
+#     step["messages"][-1].pretty_print()
 
