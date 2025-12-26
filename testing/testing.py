@@ -14,7 +14,7 @@ if not os.environ.get("OPENAI_API_KEY"):
 # ---- Load Vector DB ----
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
 vector_store = Chroma(
-    collection_name="rag",     # <-- add this
+    collection_name="rag",
     persist_directory="chroma_db",
     embedding_function=embeddings
 )
