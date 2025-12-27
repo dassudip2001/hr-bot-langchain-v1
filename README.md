@@ -1,18 +1,43 @@
-# Chat Bot with LangChain
+# Chat Application - HR Policy Q&A Assistant
 
-A Flask-based RAG (Retrieval-Augmented Generation) chatbot application that answers questions about HR policies using LangChain, OpenAI, and ChromaDB. The application follows a clean architecture pattern with controllers, services, and routes.
+A full-stack chat application featuring a RAG (Retrieval-Augmented Generation) powered chatbot that answers questions about HR policies. The application consists of a Flask backend API and a Next.js frontend client.
 
-## Features
+## 🚀 Features
 
 - 🤖 **RAG-based Chatbot**: Uses Retrieval-Augmented Generation to answer questions based on HR policy documents
 - 🔍 **Vector Search**: Leverages ChromaDB for semantic search and document retrieval
+- 🎨 **Modern Frontend**: Next.js 16 with React 19, TypeScript, and Tailwind CSS
 - 🏗️ **Clean Architecture**: Implements controller-service pattern for maintainable code structure
 - 🔐 **Environment-based Configuration**: Secure configuration management using environment variables
 - 📊 **Health Check Endpoint**: Monitor application health status
 - 🚀 **RESTful API**: Well-structured API endpoints for chat interactions
 
-## Tech Stack
+## 📁 Project Structure
 
+```
+chat-application/
+├── chat-bot-langchain-latest/    # Backend Flask API
+│   ├── app/
+│   │   ├── config/                # Application configuration
+│   │   ├── controllers/           # Request controllers
+│   │   ├── models/                # Pydantic models
+│   │   ├── routes/                # API routes
+│   │   └── services/              # Business logic & RAG agent
+│   ├── chroma_db/                 # ChromaDB persistent storage
+│   ├── main.py                    # Application entry point
+│   ├── pyproject.toml             # Python dependencies
+│   └── docker-compose.yml         # Docker configuration
+│
+└── chat-client/                   # Frontend Next.js client
+    ├── app/                      # Next.js app directory
+    ├── public/                  # Static assets
+    ├── package.json             # Node.js dependencies
+    └── tsconfig.json            # TypeScript configuration
+```
+
+## 🛠️ Tech Stack
+
+### Backend
 - **Framework**: Flask 3.1.2+
 - **LLM**: OpenAI GPT-4.1-mini
 - **Vector Database**: ChromaDB
@@ -21,239 +46,205 @@ A Flask-based RAG (Retrieval-Augmented Generation) chatbot application that answ
 - **Validation**: Pydantic
 - **Python**: 3.13+
 
-## Project Structure
+### Frontend
+- **Framework**: Next.js 16.1.1
+- **UI Library**: React 19.2.3
+- **Language**: TypeScript 5+
+- **Styling**: Tailwind CSS 4
+- **Package Manager**: Bun
 
-```
-chat-bot-langchain-latest/
-├── app/
-│   ├── __init__.py              # Flask app factory
-│   ├── config/
-│   │   └── config.py            # Application configuration
-│   ├── controllers/
-│   │   ├── chatController.py    # Chat request controller
-│   │   └── healdthController.py # Health check controller
-│   ├── models/
-│   │   └── schema.py             # Pydantic models for request/response
-│   ├── routes/
-│   │   ├── chatRoute.py         # Chat API routes
-│   │   └── heldthCheck.py       # Health check routes
-│   └── services/
-│       └── chatService.py       # Chat business logic & RAG agent
-├── chroma_db/                   # ChromaDB persistent storage
-├── main.py                      # Application entry point
-├── pyproject.toml               # Project dependencies
-└── README.md                    # This file
-```
-
-## Installation
-
-### Prerequisites
+## 📋 Prerequisites
 
 - Python 3.13 or higher
-- [uv](https://github.com/astral-sh/uv) package manager (recommended) or pip
-- OpenAI API key
+- Node.js 20+ (or Bun)
+- OpenAI API Key
+- Git
 
-### Setup Steps
+## 🔧 Installation
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd chat-bot-langchain-latest
-   ```
+### Backend Setup
 
-2. **Install dependencies using uv**
-   ```bash
-   uv sync
-   ```
-
-   Or using pip:
-   ```bash
-   pip install -e .
-   ```
-
-3. **Create a `.env` file** in the root directory:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   PORT=5003
-   LANGSMITH_API_KEY=your_langsmith_api_key_here  # Optional
-   ```
-
-4. **Set up the vector database**
-   - The ChromaDB will be automatically initialized on first run
-   - Ensure you have trained/ingested documents into the vector store (see `tranning/traning.py`)
-
-## Configuration
-
-The application uses environment variables for configuration. Key settings:
-
-- `OPENAI_API_KEY`: Your OpenAI API key (required)
-- `PORT`: Server port (default: 5003)
-- `LANGSMITH_API_KEY`: LangSmith API key for tracing (optional)
-
-Configuration is managed in `app/config/config.py`.
-
-## Running the Application
-
-### Development Mode
-
+1. Navigate to the backend directory:
 ```bash
-uv run main.py
+cd chat-bot-langchain-latest
 ```
 
-Or with Python directly:
+2. Install dependencies using `uv` (recommended) or `pip`:
 ```bash
+# Using uv
+uv pip install -e .
+
+# Or using pip
+pip install -e .
+```
+
+3. Create a `.env` file in the backend directory:
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+PORT=5000
+FLASK_ENV=development
+```
+
+4. (Optional) Set up ChromaDB using Docker:
+```bash
+docker-compose -f chroma-docker-compose.yml up -d
+```
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+```bash
+cd chat-client
+```
+
+2. Install dependencies:
+```bash
+# Using bun (recommended)
+bun install
+
+# Or using npm
+npm install
+```
+
+## 🚀 Running the Application
+
+### Start Backend Server
+
+```bash
+cd chat-bot-langchain-latest
 python main.py
 ```
 
-The server will start on `http://127.0.0.1:5003` (or the port specified in your `.env` file).
+The backend API will be available at `http://localhost:5000`
 
-## API Endpoints
+### Start Frontend Client
 
-### Health Check
-
-**GET** `/api/v1/`
-
-Check the health status of the application.
-
-**Response:**
-```json
-{
-  "message": "OK",
-  "status": "healthy",
-  "timestamp": "2024-12-26T20:56:49.810000"
-}
+```bash
+cd chat-client
+bun dev
+# or
+npm run dev
 ```
 
-### Ask Question
+The frontend will be available at `http://localhost:3000`
 
-**POST** `/api/v1/ask`
+## 📡 API Endpoints
 
-Ask a question to the HR policy chatbot.
+### Chat Endpoint
+```http
+POST /api/v1/ask
+Content-Type: application/json
 
-**Request Body:**
-```json
 {
-  "question": "What is the leave policy?"
+  "question": "What is the leave policy for employees?"
 }
 ```
 
 **Response:**
 ```json
 {
-  "answer": "Based on the HR policy...",
+  "answer": "Based on the HR policy document...",
   "status": "success"
 }
 ```
 
-**Error Response (400):**
+### Health Check
+```http
+GET /api/v1/health
+```
+
+**Response:**
 ```json
 {
-  "error": "Question is required"
+  "status": "healthy",
+  "message": "Service is running"
 }
 ```
 
-**Error Response (500):**
-```json
-{
-  "error": "An error occurred while processing your request",
-  "message": "Error details"
-}
-```
+## 🔄 How RAG Works
 
-## Usage Examples
+1. **Document Processing**: HR policy PDFs are split into chunks and converted to vector embeddings
+2. **Vector Storage**: Embeddings stored in ChromaDB for fast similarity search
+3. **Query Processing**: User questions are converted to embeddings
+4. **Retrieval**: System finds the top 3 most relevant document chunks
+5. **Generation**: GPT-4.1-mini generates answer using retrieved context
 
-### Using cURL
+## 🐳 Docker Support
 
-**Health Check:**
+### Backend with Docker
+
 ```bash
-curl http://127.0.0.1:5003/api/v1/
+cd chat-bot-langchain-latest
+docker-compose up -d
 ```
 
-**Ask a Question:**
+### ChromaDB with Docker
+
 ```bash
-curl -X POST http://127.0.0.1:5003/api/v1/ask \
-  -H "Content-Type: application/json" \
-  -d '{"question": "What is the HR policy for remote work?"}'
+cd chat-bot-langchain-latest
+docker-compose -f chroma-docker-compose.yml up -d
 ```
 
-### Using Python Requests
+## 🧪 Testing
 
-```python
-import requests
-
-# Health check
-response = requests.get("http://127.0.0.1:5003/api/v1/")
-print(response.json())
-
-# Ask a question
-response = requests.post(
-    "http://127.0.0.1:5003/api/v1/ask",
-    json={"question": "What is the leave policy?"}
-)
-print(response.json())
+### Backend Testing
+```bash
+cd chat-bot-langchain-latest
+python testing/testing.py
 ```
 
-## Architecture
+## 📝 Environment Variables
 
-The application follows a **Controller-Service-Route** pattern:
+### Backend (.env)
+- `OPENAI_API_KEY`: Your OpenAI API key (required)
+- `PORT`: Server port (default: 5000)
+- `FLASK_ENV`: Environment mode (development/production)
 
-1. **Routes** (`app/routes/`): Define API endpoints and HTTP methods
-2. **Controllers** (`app/controllers/`): Handle HTTP request/response logic, validation, and error handling
-3. **Services** (`app/services/`): Contain business logic and interact with external services (LLM, vector DB)
-4. **Models** (`app/models/`): Define data schemas using Pydantic
+### Frontend
+Configure API endpoint in your frontend code to point to the backend URL.
 
-This separation ensures:
-- Clean code organization
-- Easy testing and maintenance
-- Reusable components
-- Clear separation of concerns
-
-## RAG Implementation
-
-The chatbot uses a RAG (Retrieval-Augmented Generation) approach:
-
-1. **Document Embedding**: Documents are embedded using OpenAI's `text-embedding-3-large` model
-2. **Vector Storage**: Embeddings are stored in ChromaDB for efficient similarity search
-3. **Retrieval**: When a question is asked, the system retrieves the top 3 most relevant document chunks
-4. **Generation**: The retrieved context is passed to GPT-4.1-mini along with the question to generate an accurate answer
-
-## Development
-
-### Project Dependencies
-
-Dependencies are managed in `pyproject.toml`. Key packages:
-
-- `flask`: Web framework
-- `langchain[openai]`: LLM orchestration
-- `langchain-chroma`: ChromaDB integration
-- `chromadb`: Vector database
-- `pydantic`: Data validation
-- `python-dotenv`: Environment variable management
-
-### Adding New Features
-
-1. **New Route**: Add route in `app/routes/`
-2. **New Controller**: Create controller in `app/controllers/`
-3. **New Service**: Add business logic in `app/services/`
-4. **New Model**: Define schema in `app/models/schema.py`
-
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### Common Issues
 
 1. **OpenAI API Key Error**: Ensure `OPENAI_API_KEY` is set in your `.env` file
 2. **ChromaDB Connection Error**: Check if `chroma_db` directory has proper permissions
 3. **Port Already in Use**: Change the `PORT` in your `.env` file
+4. **Module Not Found**: Ensure all dependencies are installed using `uv pip install -e .` or `pip install -e .`
 
-## License
+## 📚 Development
+
+### Adding New Features
+
+**Backend:**
+1. **New Route**: Add route in `app/routes/`
+2. **New Controller**: Create controller in `app/controllers/`
+3. **New Service**: Add business logic in `app/services/`
+4. **New Model**: Define schema in `app/models/schema.py`
+
+**Frontend:**
+1. Add new pages in `app/` directory
+2. Create components as needed
+3. Update API calls to match backend endpoints
+
+## 📄 License
 
 This project is licensed under the MIT License.
 
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## Support
+## 📞 Support
 
 For issues and questions, please open an issue on the repository.
+
+## 👤 Author
+
+**Sudip Das**
+- GitHub: [@dassudip2001](https://github.com/dassudip2001)
+
+---
+
+**Note**: This project was created as part of the IBM SkillsBuild Winter Certification Program – Applied Artificial Intelligence.
 
