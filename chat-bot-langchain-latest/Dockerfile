@@ -17,6 +17,6 @@ COPY . .
 # RUN uv pip install --upgrade . # If your app is a package
 # RUN uv pip install --upgrade -r requirements-dev.txt # If you have dev dependencies
 
-EXPOSE 8000
+EXPOSE 5003
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"] 
+CMD ["gunicorn", "--bind", "0.0.0.0:5003", "app:app"] 
