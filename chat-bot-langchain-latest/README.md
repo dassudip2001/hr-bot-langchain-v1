@@ -193,6 +193,60 @@ response = requests.post(
 print(response.json())
 ```
 
+## Sample Questions
+
+The chatbot can answer a wide range of HR policy questions. Here are some example questions organized by category:
+
+### General HR Policy Questions
+
+- What is the primary objective of having an HR policy in an organization?
+- How does the IIA HR policy help in preventing legal issues?
+- What are the benefits of maintaining written HR policies and procedures?
+
+### 📌 Recruitment & Selection
+
+- What is the first stage of recruitment for executive positions in IIA?
+- Who is the appointing authority for Executive Directors at IIA?
+- What documents must a candidate submit before receiving an appointment letter?
+- How long is the probation period for new employees in IIA?
+- What are the consequences of falsifying educational or professional documents?
+
+### 📌 Training & Development
+
+- What is the purpose of the IIA Excellence Center for Training?
+- What is the duration and structure of the induction training for new employees?
+
+### 📌 Dress Code & Uniform
+
+- How often are employees provided with uniforms and formal shoes?
+- Under what conditions can female employees choose alternative attire?
+
+### 📌 Performance Appraisal
+
+- What formats are used for performance evaluation on a daily, weekly, and monthly basis?
+- List two objectives of the IIA performance appraisal system.
+
+### 📌 Remuneration & Benefits
+
+- How often does IIA review pay scales?
+- What benefits does IIA provide to employees besides the basic salary?
+- Which social security schemes are employees registered under as per policy?
+
+### 📌 Leave & Transfer
+
+- What is the procedure for applying for leave in IIA?
+- How does the transfer policy ensure smooth functioning across chapters?
+
+### 📌 Discipline, Culture & Conduct
+
+- What actions may be taken against employees involved in misconduct?
+- How does IIA maintain a culture of high performance and discipline?
+
+### 📌 Gender Policy & Safety
+
+- What protections does the IIA gender policy provide at the workplace?
+- Why is safety and health policy crucial for employee productivity?
+
 ## Architecture
 
 The application follows a **Controller-Service-Route** pattern:

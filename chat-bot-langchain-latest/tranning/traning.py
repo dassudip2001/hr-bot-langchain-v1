@@ -16,7 +16,7 @@ if not os.environ.get("OPENAI_API_KEY"):
   os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
 
 # Load data
-pdf_path= Path(__file__).parent / "../OpEzee-HR Policy-19 Oct 2024.pdf"
+pdf_path= Path(__file__).parent / "../IIA HR Policy.pdf"
 loader = PyPDFLoader(pdf_path)
 docs = loader.load()
 
@@ -38,7 +38,7 @@ Chroma.from_documents( # type: ignore
     splits, 
     embeddings, 
     persist_directory="chroma_db",
-    collection_name='rag'
+    collection_name='hr_policy'
 )
 
 print("✔️ Index built — stored in chroma_db/")

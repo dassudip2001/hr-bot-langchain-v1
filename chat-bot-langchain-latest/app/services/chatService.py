@@ -11,7 +11,7 @@ load_dotenv()
 # --- Vector DB & Model ---
 embeddings = OpenAIEmbeddings(model="text-embedding-3-large")
 vector_store = Chroma(
-    collection_name="rag",
+    collection_name="hr_policy",
     persist_directory="chroma_db",
     embedding_function=embeddings
 )
@@ -32,7 +32,7 @@ def retrieve_context(query: str):
 tools = [retrieve_context]
 
 prompt = (
-    "You are a helpful assistant that can answer questions about the Opzeze HR Policy. "
+    "You are a helpful assistant that can answer questions about the  Human Resource Policy. "
     "Only answer the user based on the provided context. If the answer is not in the policy, say so."
 )
 
