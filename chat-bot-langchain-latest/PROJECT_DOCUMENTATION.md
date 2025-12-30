@@ -9,10 +9,10 @@
 ---
 
 ## Student Details
-- **Name**: [Your Name]
-- **College**: [Your College Name]
+- **Name**: Sudip Das
+- **College**: Vidyasagar University
 - **Project Type**: Chatbot / Q&A Assistant
-- **Submission Date**: December 2024
+- **Submission Date**: December 2025
 
 ---
 
