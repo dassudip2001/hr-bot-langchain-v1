@@ -1,4 +1,5 @@
 # setup_index.py
+from chromadb import HttpClient
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
@@ -40,5 +41,19 @@ Chroma.from_documents( # type: ignore
     persist_directory="chroma_db",
     collection_name='hr_policy'
 )
+
+#hosting the chroma_db in the cloud
+# chroma_client = Chroma(
+#     url="https://chroma-db.onrender.com",
+#     api_key="your_api_key",
+#     collection_name="hr_policy"
+# )
+
+# hosting the chroma_db in the cloud using docker
+# docker run -d -p 8000:8000 chromadb/chroma
+# client=HttpClient(host="localhost",port=8000)
+# vector_store=Chroma(client=client,collection_name="hr_policy")
+# vector_store.add_documents(splits)
+
 
 print("✔️ Index built — stored in chroma_db/")
