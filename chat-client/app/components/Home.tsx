@@ -1,6 +1,6 @@
 "use client";
 
-import axios from "axios";
+import { api } from "@/config/axiosConf";
 import { useState, useRef, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -50,7 +50,7 @@ export default function HomePage() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5003/api/v1/ask", {
+      const response = await api.post("/api/v1/ask", {
         question,
       });
       const assistantMessage: Message = {

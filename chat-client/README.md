@@ -1,8 +1,48 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment Setup
+
+Before running the development server, you need to configure environment variables.
+
+### 1. Create Environment File
+
+Create a `.env.local` file in the root of the `chat-client` directory:
+
+```bash
+# For development
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5003
+```
+
+### 2. Environment Variables
+
+| Variable | Description | Example |
+|----------|-------------|---------|
+| `NEXT_PUBLIC_API_BASE_URL` | Base URL for the chat API backend | `http://localhost:5003` |
+
+**Note:** The `NEXT_PUBLIC_` prefix is required for Next.js to expose these variables to the browser.
+
+### 3. Environment Files
+
+- `.env.local` - Local development (gitignored)
+- `.env.staging` - Staging environment (used with `build:staging` script)
+- `.env.production` - For production
+- `.env*` files are gitignored by default
+
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
