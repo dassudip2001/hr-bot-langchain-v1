@@ -1,6 +1,7 @@
 "use client";
 
 import { api } from "@/config/axiosConf";
+import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
