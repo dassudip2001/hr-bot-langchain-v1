@@ -1,7 +1,6 @@
 "use client";
 
 import { api } from "@/config/axiosConf";
-import axios from "axios";
 import { useState, useRef, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -102,7 +101,7 @@ export default function HomePage() {
           {messages.length === 1 && (
             <div className="flex flex-col items-center justify-center h-full text-center py-12">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-semibold mb-4">
+                <div className="w-16 h-16 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-semibold mb-4">
                   AI
                 </div>
               </div>
@@ -124,7 +123,7 @@ export default function HomePage() {
                 }`}
               >
                 {message.sender === "assistant" && (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold shrink-0 mt-1">
                     AI
                   </div>
                 )}
@@ -135,12 +134,12 @@ export default function HomePage() {
                       : "text-gray-900 dark:text-gray-100"
                   } rounded-lg px-4 py-3`}
                 >
-                  <div className="whitespace-pre-wrap break-words leading-relaxed">
+                  <div className="whitespace-pre-wrap wrap-break-word leading-relaxed">
                     {message.answer}
                   </div>
                 </div>
                 {message.sender === "user" && (
-                  <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 text-sm font-semibold flex-shrink-0 mt-1">
+                  <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-700 flex items-center justify-center text-gray-700 dark:text-gray-300 text-sm font-semibold shrink-0 mt-1">
                     U
                   </div>
                 )}
@@ -149,7 +148,7 @@ export default function HomePage() {
 
             {isLoading && (
               <div className="flex gap-4 justify-start">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold flex-shrink-0 mt-1">
+                <div className="w-8 h-8 rounded-full bg-linear-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-semibold shrink-0 mt-1">
                   AI
                 </div>
                 <div className="bg-gray-100 dark:bg-gray-800 rounded-lg px-4 py-3">
@@ -193,7 +192,7 @@ export default function HomePage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="p-3 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-full transition-colors flex-shrink-0 flex items-center justify-center"
+                className="p-3 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed text-white rounded-full transition-colors shrink-0 flex items-center justify-center"
               >
                 {!isLoading ? (
                   <svg
